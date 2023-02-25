@@ -1,4 +1,7 @@
+"use strict";
+
 /**
+ * function called averagePair
  * This function calculates if there is a pair of numbers within an array
  * that can make the target average
  *
@@ -6,6 +9,7 @@
  *
  * it returns a true if it can and false it can't such find a pair
  */
+
 function averagePair(nums, targetAvg) {
   console.log("averagePair=", averagePair, "nums=", nums, "targetAvg=", targetAvg);
   //check to see if nums is empty (edge case)
@@ -39,5 +43,5 @@ function averagePair(nums, targetAvg) {
   return false;
 }
 
-averagePair()
+// averagePair()
 

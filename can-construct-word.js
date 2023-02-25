@@ -1,6 +1,8 @@
 "use strict";
 
-/** this function will serve as our frequency counter for the problems
+/**
+ * this function is called frequencyCounter
+ * this function will serve as our frequency counter for the problems
  *
  * it will take in a an iterable
  *
@@ -10,18 +12,20 @@
 
 function frequencyCounter(iterable) {
   console.log("frequencyCounter=", frequencyCounter, "iterable=", iterable);
-  const freqMap = {};
+  const freqs = {};
   //populate the map with the counts of the values in the iterable
   for (let value of iterable) {
-    freqMap[value] = (freqMap[value] || 0) + 1;
+    freqs[value] = (freqs[value] || 0) + 1;
   }
-  console.log("freqMap=", freqMap);
-  return freqMap;
+  console.log("freqs=", freqs);
+  return freqs;
 }
 
 
-
-/** this function will determine if a word input can be constructed by a letters
+/**
+ * This function is called canConstructWord
+ *
+ * this function will determine if a word input can be constructed by a letters
  * input
  *
  * it was take two strings - one a word and one letters
@@ -34,24 +38,30 @@ function frequencyCounter(iterable) {
 function canConstructWord(word, letters) {
   console.log("canConstructWord", "word=", word, "letters=", letters);
   //short circuit to false if word is longer than letters
-  if (word.length < letters.length) return false;
+  if (word.length > letters.length) return false;
 
   //make a frequency counter for each two input
-  const wordMap = frequencyCounter(word);
-  console.log("wordMap=", wordMap);
+  const wordFreqs = frequencyCounter(word);
+  console.log("wordFreqs=", wordFreqs);
 
-  const lettersMap = frequencyCounter(letters);
-  console.log("lettersMap=", lettersMap);
+  const lettersFreqs = frequencyCounter(letters);
+  console.log("lettersFreqs=", lettersFreqs);
 
   //loop through the word counter and confirm that there are enough vals
   //at that key in the letters counter
   //short circuit if the key isnt in the letters counter at all
-  for (let key in wordMap) {
-    if (!(key in lettersMap)) {
+  for (let key in wordFreqs) {
+    console.log("lettersFreqs=", lettersFreqs);
+    console.log("lettersFreqs[key]=", lettersFreqs[key]);
+
+    console.log("wordFreqs=", wordFreqs);
+    console.log("wordFreqs[key]=", wordFreqs[key]);
+
+    if (!(key in lettersFreqs)) {
       console.log("key=", key);
       return false;
     }
-    else if (wordMap[key] < lettersMap[key]) {
+    else if (wordFreqs[key] > lettersFreqs[key]) {
       return false;
     }
   }
